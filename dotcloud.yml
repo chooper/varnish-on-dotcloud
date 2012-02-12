@@ -1,0 +1,10 @@
+varnish:
+    type: custom
+    buildscript: builder
+    systempackages:
+        - varnish
+    processes:
+        varnish: varnishd -F -a :$PORT_VARNISH -f /home/dotcloud/varnish.vcl -S /home/dotcloud/varnish.secret -s malloc,128M -n /home/dotcloud/varnish-run/$HOSTNAME
+    ports:
+        varnish: tcp
+
